@@ -138,10 +138,10 @@ def cover():
     fl.append(Spacer(1, 1.0*cm))
     fl.append(Paragraph("Cybersécurité, intelligence artificielle, systèmes et réseaux,<br/>métiers publics : quel chemin après un Bac Pro CIEL ?", S['cover_s']))
     fl.append(Spacer(1, 0.6*cm))
-    fl.append(Paragraph("Profil : France - région Auvergne-Rhône-Alpes (secteur d'Annonay)<br/>18 métiers étudiés en détail + 8 métiers alternatifs - 10 graphiques - scénarios 2030/2040", S['cover_s']))
+    fl.append(Paragraph("Profil : France - région Auvergne-Rhône-Alpes (secteur d'Annonay)<br/>18 métiers étudiés en détail + 8 métiers alternatifs - 12 graphiques - scénarios 2030/2040", S['cover_s']))
     fl.append(Spacer(1, 3.2*cm))
     fl.append(Paragraph(f"Dossier d'aide à la décision généré le {date.today().strftime('%d/%m/%Y')}", S['cover_s']))
-    fl.append(Paragraph("Données : sources officielles et barèmes 2024-2025 (voir section 18 - Sources et méthodologie)", S['cover_s']))
+    fl.append(Paragraph("Données : sources officielles et barèmes 2024-2026 (voir section 18 - Sources et méthodologie)", S['cover_s']))
     fl.append(PageBreak())
     return fl
 
@@ -168,7 +168,7 @@ def sec_resume(story):
     story.append(P("<b>Les 10 conclusions principales :</b>"))
     story.append(B([
         "<b>Le marché de la cybersécurité reste favorable mais n'est plus un eldorado pour débutants.</b> "
-        "23 000 offres d'emploi publiées entre juin 2023 et juin 2024 (ANSSI, Observatoire 2025), environ "
+        "23 000 offres d'emploi publiées entre juin 2023 et juin 2024, soit +49 % d'offres entre 2019 et 2024 (ANSSI, Observatoire 2025), environ "
         "15 000 postes non pourvus en 2025 - mais 75,9 % des recrutements exigent un bac+5. Le marché junior "
         "(SOC L1, pentester junior) est saturé côté candidats ; les segments favorables aux juniors sont la "
         "sécurité cloud, le DevSecOps et la sécurité applicative (Zeroday 2025).",
@@ -276,7 +276,7 @@ def sec_fiches(story):
     story.append(Paragraph("4. Fiches détaillées des 18 métiers", S['h1']))
     story.append(P("Chaque fiche suit le même plan : A) description et réalité du métier ; B) parcours "
         "possibles depuis le Bac Pro CIEL ; C) salaires détaillés par niveau (brut, net avant et après "
-        "impôt, calculé avec les hypothèses de la section 12) ; D) progression de carrière ; E) impact de "
+        "impôt, calculé avec les hypothèses de la section 18) ; D) progression de carrière ; E) impact de "
         "l'IA ; F) probabilités et scénarios. Les fiches sont numérotées 4.1 à 4.18 pour rester "
         "navigables dans la table des matières."))
     for i, m in enumerate(ALL, 1):
@@ -345,8 +345,8 @@ def fiche_parcours(story, m):
 def fiche_salaires(story, m):
     story.append(Paragraph("C. Salaires détaillés", S['h3']))
     story.append(P("Net avant IR = brut - cotisations salariales (23 %, cadre privé). Net après IR = net "
-        "avant IR moins l'impôt sur le revenu calculé au barème 2025, célibataire, 1 part, abattement 10 %. "
-        "Méthode complète en section 12. Valeurs centrales des fourchettes basse/centrale/haute.", 'small'))
+        "avant IR moins l'impôt sur le revenu calculé au barème 2026 (revenus 2025), célibataire, 1 part, abattement 10 %. "
+        "Méthode complète en section 18. Valeurs centrales des fourchettes basse/centrale/haute.", 'small'))
     rows = [[cell('Niveau', head=True), cell('Brut annuel (b / c / h)', head=True),
              cell('Net mensuel avant IR (c)', head=True), cell('Net mensuel après IR (b / c / h)', head=True),
              cell('Région / secteur', head=True), cell('Variable', head=True)]]
@@ -465,8 +465,8 @@ def sec_parcours(story):
 def sec_salaires(story):
     story.append(Paragraph("6. Comparaison des salaires par niveau d'expérience", S['h1']))
     story.append(P("Tous les montants sont des valeurs centrales de fourchettes (basse/centrale/haute) "
-        "issues des barèmes et offres cités en section 17. Conversion en net : hypothèses cadre privé "
-        "(23 % de cotisations salariales), barème IR 2025, célibataire 1 part. Le détail par métier est "
+        "issues des barèmes et offres cités en section 18. Conversion en net : hypothèses cadre privé "
+        "(23 % de cotisations salariales), barème IR 2026 (revenus 2025), célibataire 1 part. Le détail par métier est "
         "dans chaque fiche (partie C)."))
     story.append(Paragraph("6.1 Tableau comparatif - nets après impôt par niveau (EUR/mois)", S['h2']))
     noms_niveaux = ['Débutant (0-2 ans)', 'Junior (2-4 ans)', 'Confirmé (4-7 ans)',
@@ -618,6 +618,34 @@ def sec_politique(story):
         "métiers, horizon 5-10 ans, hypothèse centrale. Mécanismes économiques, pas des prédictions : "
         "par exemple, la contrainte budgétaire réduit les recrutements publics (volume budgétaire), pas "
         "parce qu'un parti serait « contre » un métier.", 'small'))
+    story.append(Paragraph("8.4 Focus : la voie militaire et gendarmerie sous contrainte budgétaire", S['h2']))
+    story.append(P("<b>Ce qui est adopté :</b> la LPM 2024-2030 (413 MdEUR dont ~4 MdEUR cyber) a été "
+        "complétée par une <b>LPM actualisée (loi du 16 août 2026) : +36 MdEUR, 63,3 MdEUR prévus pour "
+        "2027</b> (Vie-publique.fr). Le budget Défense est l'un des rares budgets publics en hausse "
+        "soutenue : les recrutements militaires et cyber restent soutenus, contrairement à la fonction "
+        "publique civile (point d'indice gelé ; la Cour des comptes propose un gel des avancements pour "
+        "2027)."))
+    story.append(P("<b>Ce que les brochures de recrutement ne disent pas :</b>"))
+    story.append(B([
+        "<b>~30 % de ruptures en période d'essai</b> observées dans l'armée de Terre (HCECM 2026) : "
+        "l'engagement n'est pas un CDI garanti - la sélection militaire, médicale et physique continue "
+        "après l'entrée, et une part significative des engagés ne va pas au bout de la première période.",
+        "<b>Les soldes annoncées varient du simple au double selon les sources</b> : ~1 480 EUR net de "
+        "base (hors primes) vs ~2 075-2 185 EUR (avec primes, indemnités, logement) pour un gendarme "
+        "débutant. Avant de comparer avec le privé, demande une fiche de paie réelle ou une simulation "
+        "au CIRFA / au centre de recrutement : le net réel dépend des primes, du logement de fonction "
+        "et du régime fiscal militaire (partiellement non imposable).",
+        "<b>La spécialité cyber n'est pas garantie à l'entrée</b> : on entre gendarme ou soldat, puis on "
+        "postule vers les unités spécialisées (N'Tech, ComCyberGend, DTCybernum) après l'école, avec "
+        "sélection interne. Prévois un plan B si la spécialisation tarde.",
+        "<b>Contreparties réelles :</b> statut, stabilité quasi totale, logement à faible coût, retraite "
+        "anticipée possible ; en échange, disponibilité permanente, mutations, hiérarchie militaire et "
+        "charge psychologique (enquêtes, victimes)."]))
+    story.append(P("<b>Implication pour ton choix :</b> la contrainte budgétaire frappe d'abord la fonction "
+        "publique civile ; la Défense et la gendarmerie sont relativement protégées (LPM votée, "
+        "souveraineté consensuelle). Si la stabilité est ta priorité n° 1, la voie militaire reste la "
+        "plus robuste aux alternances politiques - mais vérifie les conditions réelles (sélection, "
+        "solde net, spécialité) avant de t'engager.", 'small'))
 
 def sec_fiscal(story):
     story.append(Paragraph("9. Fiscalité, aides et avantages financiers", S['h1']))
@@ -667,7 +695,7 @@ def sec_fiscal(story):
         [cell('Règle de conversion CA -> revenu'), cell('Un CA de 60 000 EUR/an en micro-BNC = ~45 240 EUR '
             'après cotisations 24,6 %, avant IR et CFP ; soit ~3 300 EUR net/mois avant IR, ~2 950 EUR '
             'après IR (1 part). Hors frais professionnels réels, congés non payés, prévoyance et '
-            'retraite complémentaire volontaire.'), cell('Calcul de cette étude (méthode section 12)')]],
+            'retraite complémentaire volontaire.'), cell('Calcul de cette étude (méthode section 18)')]],
         widths=[3.9*cm, 9.1*cm, 3.6*cm]))
     story.append(P("<b>Point clé :</b> ne compare jamais un chiffre d'affaires d'indépendant à un salaire. "
         "Retire ~25 % de cotisations, l'IR, les frais (matériel, assurance, formation), et compte 30-40 "
@@ -689,9 +717,112 @@ def sec_fiscal(story):
         "réels possible si supérieurs)."]))
 
 
+def sec_argent(story):
+    story.append(Paragraph("10. G\u00e9rer ton argent : budget, \u00e9pargne et risque", S['h1']))
+    story.append(P("Cette section r\u00e9pond \u00e0 une question que tu m'as pos\u00e9e directement : une fois le "
+        "salaire obtenu, comment le g\u00e9rer ? <b>Avertissement :</b> ceci est de l'information g\u00e9n\u00e9rale, "
+        "pas un conseil financier personnalis\u00e9. Pour un conseil gratuit et ind\u00e9pendant : AMF "
+        "(\u00c9pargne Info Service), Banque de France (Mes questions d'argent). V\u00e9rifie toujours qu'un "
+        "conseiller figure au registre ORIAS ; l'AMF publie une liste noire des sites non autoris\u00e9s."))
+
+    story.append(Paragraph("10.1 Les trois phases de ta vie financi\u00e8re", S['h2']))
+    story.append(T([
+        [cell('Phase', head=True), cell('Revenu typique (net)', head=True), cell('Priorit\u00e9 financi\u00e8re', head=True), cell('Erreur fr\u00e9quente', head=True)],
+        [cell('17-20 ans : alternant (BTS)'), cell('~800-1 250 EUR/mois (43-67 % du SMIC) + aides \u00e9ventuelles (APL, Mobili-Jeune)'),
+         cell("\u00c9quilibrer le budget, \u00e9viter les dettes, constituer un premier matelas"),
+         cell("Cr\u00e9dit conso ou paiement fractionn\u00e9 pour un smartphone/PC ; abonnements multiples")],
+        [cell('21-25 ans : premier emploi (technicien, admin, SOC)'), cell('~1 800-2 400 EUR/mois avant IR'),
+         cell("Matelas de 3 mois de d\u00e9penses ; permis, logement raisonnable ; investir dans les certifications"),
+         cell("Augmenter son train de vie aussi vite que son salaire")],
+        [cell('25-35 ans : progression (cyber, ing\u00e9nieur)'), cell('~2 400-3 500 EUR/mois avant IR'),
+         cell("\u00c9pargne r\u00e9guli\u00e8re diversifi\u00e9e, projet immobilier \u00e9ventuel, retraite"),
+         cell("Concentrer l'\u00e9pargne sur un seul produit ou une mode (crypto, influenceurs)")]],
+        widths=[3.6*cm, 4.2*cm, 4.6*cm, 4.2*cm]))
+
+    story.append(Paragraph("10.2 Quatre budgets mensuels types (hypoth\u00e8ses explicites)", S['h2']))
+    story.append(T([
+        [cell('Poste', head=True), cell('Alternant 19 ans, chez les parents (Annonay)', head=True),
+         cell('Alternant 19 ans, en ville (Saint-\u00c9tienne)', head=True),
+         cell('Jeune actif 23 ans, SOC 38 kEUR (ville moyenne)', head=True),
+         cell('Confirm\u00e9 30 ans, cyber 55 kEUR (Lyon)', head=True)],
+        [cell('Revenu net apr\u00e8s IR'), cell('~950 EUR + aides'), cell('~950 EUR + APL ~200-250 EUR'),
+         cell('~2 158 EUR'), cell('~2 905 EUR')],
+        [cell('Logement'), cell('0 (famille)'), cell('-400 EUR (studio)'), cell('-700 EUR'), cell('-850 EUR')],
+        [cell('Transport'), cell("-30 EUR (Pass'R\u00e9gion / covoiturage)"), cell('-25 EUR (abonnement)'),
+         cell('-60 EUR (voiture essence + assurance)'), cell('-60 EUR')],
+        [cell('Reste \u00e0 vivre + \u00e9pargne possible'), cell('~500-700 EUR/mois (le plus favorable \u00e0 l\u2019\u00e9pargne)'),
+         cell('~250-350 EUR/mois'), cell('~700-900 EUR/mois'), cell('~1 100-1 300 EUR/mois')]],
+        widths=[3.4*cm, 3.6*cm, 3.6*cm, 3.6*cm, 3.4*cm]))
+    story.append(P("Hypoth\u00e8ses : nets calcul\u00e9s avec le moteur de cette \u00e9tude (bar\u00e8me IR 2026, cotisations "
+        "23 %) ; loyers indicatifs observ\u00e9s 2025-2026 (LocService, ImmoJeune) ; aides estim\u00e9es, \u00e0 simuler "
+        "sur caf.fr et actionlogement.fr ; alternant \u00e0 43-51 % du SMIC. Ce sont des exemples illustratifs, "
+        "pas des moyennes. Le sc\u00e9nario \u00ab chez les parents \u00bb est de loin le plus favorable \u00e0 "
+        "l'\u00e9pargne si le transport est ma\u00eetris\u00e9.", 'small'))
+
+    story.append(Paragraph("10.3 L'ordre des priorit\u00e9s (principes largement partag\u00e9s)", S['h2']))
+    story.append(T([
+        [cell('#', head=True), cell('\u00c9tape', head=True), cell('Pourquoi', head=True), cell('Outils courants', head=True)],
+        [cell('1'), cell("S\u00e9curiser ses comptes et ses habitudes"),
+         cell("Les arnaques (hame\u00e7onnage, faux conseillers, investissements miracles) sont la 1re cause de perte chez les jeunes ; ton profil cyber est un atout ici"),
+         cell("Authentification forte, plafonds de carte, ne jamais communiquer un code")],
+        [cell('2'), cell("\u00c9viter la dette de consommation"),
+         cell("Le co\u00fbt du cr\u00e9dit d\u00e9passe largement le rendement des placements s\u00fbrs"),
+         cell("Pas de cr\u00e9dit revolving ni paiement en plusieurs fois sans n\u00e9cessit\u00e9")],
+        [cell('3'), cell("Matelas de s\u00e9curit\u00e9 : 1 mois, puis 3 mois de d\u00e9penses"),
+         cell("Ch\u00f4mage partiel, panne, d\u00e9m\u00e9nagement : \u00e9vite de vendre des placements au pire moment"),
+         cell("Livret A, LDDS, Livret Jeune")],
+        [cell('4'), cell("Investir sur toi-m\u00eame"),
+         cell("Pendant 10 ans, ton capital principal est ta comp\u00e9tence : certifications, mat\u00e9riel de labo, concours"),
+         cell("500-2 000 EUR/an (ordre de grandeur)")],
+        [cell('5'), cell("\u00c9pargne de projet \u00e0 moins de 5 ans (permis, apport, mat\u00e9riel)"),
+         cell("L'argent dont tu auras besoin bient\u00f4t ne doit pas \u00eatre risqu\u00e9"),
+         cell("Livrets, comptes \u00e0 terme")],
+        [cell('6'), cell("\u00c9pargne long terme (>= 8 ans)"),
+         cell("Seul horizon o\u00f9 le risque en actions est historiquement mieux tol\u00e9r\u00e9"),
+         cell("PEA (d\u00e8s 18 ans), assurance-vie, compte-titres")]],
+        widths=[0.8*cm, 4.4*cm, 6.6*cm, 4.8*cm]))
+
+    story.append(Paragraph("10.4 O\u00f9 placer ton argent : produits, risques et fiscalit\u00e9", S['h2']))
+    story.append(T([
+        [cell('Produit', head=True), cell('Risque de perte en capital', head=True), cell('Rendement indicatif', head=True),
+         cell('Fiscalit\u00e9', head=True), cell('Plafond / condition', head=True), cell('Usage', head=True)],
+        [cell('Livret A'), cell('Aucun'), cell('1,7 % (taux en vigueur, \u00e0 v\u00e9rifier sur service-public.fr)'),
+         cell('Exon\u00e9r\u00e9'), cell('22 950 EUR'), cell('Matelas de s\u00e9curit\u00e9')],
+        [cell('LDDS'), cell('Aucun'), cell('idem Livret A'), cell('Exon\u00e9r\u00e9'), cell('12 000 EUR'), cell('Matelas')],
+        [cell('Livret Jeune'), cell('Aucun'), cell('Fix\u00e9 par la banque (>= Livret A)'), cell('Exon\u00e9r\u00e9'),
+         cell('1 600 EUR, 12-25 ans'), cell('Petite \u00e9pargne')],
+        [cell('Assurance-vie (fonds en euros)'), cell('Garantie par l\u2019assureur'), cell('Variable selon contrat'),
+         cell('Pr\u00e9l\u00e8vements sociaux + IR selon dur\u00e9e'), cell('Sans plafond'), cell('Moyen terme')],
+        [cell('PEA (ETF diversifi\u00e9s)'), cell('Oui'), cell('Variable, non garanti'),
+         cell('IR exon\u00e9r\u00e9 apr\u00e8s 5 ans ; pr\u00e9l\u00e8vements sociaux sur gains'), cell('150 000 EUR, >= 18 ans'),
+         cell('Long terme >= 8 ans')],
+        [cell('Compte-titres'), cell('Oui'), cell('Variable, non garanti'), cell('PFU ~30 % (12,8 % IR + 17,2 % PS ; taux \u00e0 v\u00e9rifier)'),
+         cell('Sans plafond'), cell('Diversification')],
+        [cell('Crypto-actifs'), cell('Tr\u00e8s \u00e9lev\u00e9 (chutes de -70 % ou plus observ\u00e9es)'), cell('Impr\u00e9visible'),
+         cell('PFU ~30 % (\u00e0 v\u00e9rifier)'), cell('-'), cell('Sp\u00e9culation - jamais ton \u00e9pargne de s\u00e9curit\u00e9')]],
+        widths=[2.9*cm, 3.2*cm, 3.2*cm, 3.4*cm, 2.6*cm, 2.7*cm]))
+    story.append(P("Taux et plafonds \u00e0 v\u00e9rifier au moment de d\u00e9cider : ils sont revaloris\u00e9s "
+        "r\u00e9guli\u00e8rement (Banque de France, service-public.fr). Les livrets r\u00e9glement\u00e9s sont exon\u00e9r\u00e9s "
+        "d'IR et de pr\u00e9l\u00e8vements sociaux.", 'small'))
+
+    story.append(Paragraph("10.5 Comprendre le risque : simulation d'\u00e9pargne", S['h2']))
+    story.append(CH('c12_epargne.png'))
+    story.append(P("Lecture : avec 300 EUR/mois pendant 15 ans, la m\u00e9diane des 2 000 simulations donne "
+        "~73 kEUR (dont 54 kEUR vers\u00e9s) - mais l'intervalle 10-90 % est large : le rendement n'est pas "
+        "garanti, et une mauvaise d\u00e9cennie existe. C'est exactement pour cela que le matelas de "
+        "s\u00e9curit\u00e9 (\u00e9tape 3) reste sur des livrets, et que seul l'horizon >= 8 ans justifie le risque "
+        "en actions. Simulation illustrative, avant frais et imp\u00f4ts.", 'small'))
+
+    story.append(P("<b>Sp\u00e9cificit\u00e9s \u00e0 conna\u00eetre :</b> en gendarmerie/arm\u00e9es, logement de fonction et "
+        "certains avantages en nature r\u00e9duisent tes d\u00e9penses structurelles (une partie de la "
+        "r\u00e9mun\u00e9ration militaire est non imposable ou diff\u00e9remment trait\u00e9e - demande une simulation "
+        "au recrutement). En freelance/micro-entrepreneur, mets de c\u00f4t\u00e9 ~30-45 % de chaque facture "
+        "pour les cotisations et l'IR avant de compter le reste comme \u00ab ton \u00bb argent (voir section "
+        "9.3).", 'small'))
+
 def sec_probabilites(story):
-    story.append(Paragraph("10. Probabilités et scénarios d'avenir", S['h1']))
-    story.append(Paragraph("10.1 Comment les probabilités sont construites", S['h2']))
+    story.append(Paragraph("11. Probabilités et scénarios d'avenir", S['h1']))
+    story.append(Paragraph("11.1 Comment les probabilités sont construites", S['h2']))
     story.append(P("Il n'existe aucune statistique publique « probabilité d'obtenir un poste de pentester » "
         "ou « risque d'obsolescence par métier ». Les probabilités de ce dossier sont donc des "
         "<b>estimations raisonnées</b> à partir de quatre types de données : (1) taux de réussite aux "
@@ -700,7 +831,7 @@ def sec_probabilites(story):
         "(enquêtes d'insertion des universités et de l'apprentissage) ; (4) jugement expert calibré sur "
         "ces données. Chaque estimation est assortie d'une fourchette et de sa base dans les fiches "
         "(partie F). Quand les données sont insuffisantes, c'est écrit explicitement."))
-    story.append(Paragraph("10.2 Synthèse des probabilités de salaire (18 métiers)", S['h2']))
+    story.append(Paragraph("11.2 Synthèse des probabilités de salaire (18 métiers)", S['h2']))
     rows = [[cell('Métier', head=True), cell('1er emploi', head=True), cell('Confirmé', head=True),
              cell('> 2 500 EUR net', head=True), cell('> 3 000 EUR net', head=True),
              cell('> 4 000 EUR net', head=True), cell('> 5 000 EUR net', head=True),
@@ -713,7 +844,7 @@ def sec_probabilites(story):
     story.append(T(rows, widths=[3.6*cm, 2.5*cm, 2.0*cm, 2.4*cm, 2.4*cm, 2.2*cm, 1.9*cm, 1.6*cm]))
     story.append(P("Les seuils sont en net après IR, célibataire 1 part. « 1er emploi » et « Confirmé » "
         "sont des fourchettes de probabilité conditionnelles au parcours suivi (détail dans chaque fiche).", 'small'))
-    story.append(Paragraph("10.3 Trois scénarios d'avenir (2025-2040)", S['h2']))
+    story.append(Paragraph("11.3 Trois scénarios d'avenir (2025-2040)", S['h2']))
     story.append(T([
         [cell('Scénario', head=True), cell('Hypothèses', head=True), cell('Conséquences pour toi', head=True)],
         [cell('Défavorable', bold=True),
@@ -751,39 +882,48 @@ def sec_probabilites(story):
         "est un baromètre direct de ton premier emploi."]))
 
 def sec_graphiques(story):
-    story.append(Paragraph("11. Tableaux et graphiques comparatifs", S['h1']))
+    story.append(Paragraph("12. Tableaux et graphiques comparatifs", S['h1']))
     story.append(P("Les graphiques c1, c2 et c6 sont présentés dans leurs sections thématiques (6 et 8). "
         "Cette section regroupe les vues transversales complémentaires. Chaque graphique indique unités, "
         "période, hypothèses, source, et la nature des données (observées ou projetées)."))
-    story.append(Paragraph("11.1 Durée d'études vs rémunération à long terme", S['h2']))
+    story.append(Paragraph("12.1 Durée d'études vs rémunération à long terme", S['h2']))
     story.append(CH('c7_duree_salaire.png'))
     story.append(P("Lecture : la relation durée d'études -> salaire existe mais est bruitée : des métiers "
         "courts (admin sys) offrent un accès rapide à un salaire correct, tandis que les métiers longs "
         "(RSSI, architecte) paient surtout l'expérience cumulée, pas le diplôme seul.", 'small'))
-    story.append(Paragraph("11.2 Coût de formation vs rendement salarial", S['h2']))
+    story.append(Paragraph("12.2 Coût de formation vs rendement salarial", S['h2']))
     story.append(CH('c8_cout_roi.png'))
     story.append(P("Lecture : en alternance, le coût est nul et le rendement immédiat - d'où la "
         "recommandation systématique de privilégier l'alternance. Les coûts affichés correspondent aux "
         "hypothèses hors alternance (frais de scolarité publics/privés).", 'small'))
-    story.append(Paragraph("11.3 Analyse risque / opportunité", S['h2']))
+    story.append(Paragraph("12.3 Analyse risque / opportunité", S['h2']))
     story.append(CH('c9_risque_opportunite.png'))
-    story.append(Paragraph("11.4 Perspectives d'emploi à 2040", S['h2']))
+    story.append(Paragraph("12.4 Perspectives d'emploi à 2040", S['h2']))
     story.append(CH('c5_emploi2040.png'))
-    story.append(Paragraph("11.5 Classement multicritère", S['h2']))
+    story.append(Paragraph("12.5 Classement multicritère", S['h2']))
     story.append(CH('c10_classement.png'))
     story.append(P("Le détail des critères, des pondérations et du calcul est en section 12. Le score "
         "combine rémunération, demande, stabilité, risque IA, accessibilité depuis ton Bac Pro, intérêt "
         "technique, évolution, conditions de travail et mobilité internationale.", 'small'))
+    story.append(Paragraph("12.6 Revenu net cumul\u00e9 par parcours (18 -> 40 ans)", S['h2']))
+    story.append(CH('c11_cumul_parcours.png'))
+    story.append(P("Lecture : le parcours bac+5 (P2) d\u00e9marre plus tard mais rattrape puis d\u00e9passe "
+        "l\u2019alternance courte (P1) vers 30-35 ans gr\u00e2ce aux salaires sup\u00e9rieurs : \u00e0 40 ans, ~706 kEUR "
+        "cumul\u00e9s contre ~689 kEUR. La gendarmerie (P3, ~576 kEUR) compense une solde plus basse par la "
+        "stabilit\u00e9 et les avantages en nature (logement, non comptabilis\u00e9s ici). L\u2019emploi direct "
+        "post-Bac Pro (P4, ~536 kEUR) plafonne plus t\u00f4t. Hypoth\u00e8ses : salaires centraux des fiches, "
+        "bar\u00e8me IR 2026, cotisations 23 %, sans p\u00e9riode de ch\u00f4mage - mod\u00e8le central, pas une "
+        "pr\u00e9vision individuelle.", 'small'))
 
 def sec_alternatifs(story):
-    story.append(Paragraph("12. Métiers alternatifs et pistes méconnues", S['h1']))
+    story.append(Paragraph("13. Métiers alternatifs et pistes méconnues", S['h1']))
     story.append(P("Huit métiers auxquels tu n'aurais probablement pas pensé, choisis pour leur "
         "compatibilité avec ton Bac Pro CIEL (souvent la partie électronique), leur stabilité ou leur "
         "faible concurrence. Fiches condensées : description, missions, salaires, impact IA, pourquoi "
         "ça vaut le coup, garde-fous."))
     for i, a in enumerate(ALT, 1):
         story.append(CondPageBreak(3*cm))
-        story.append(Paragraph(f"12.{i} {a['nom']}", S['h2']))
+        story.append(Paragraph(f"13.{i} {a['nom']}", S['h2']))
         story.append(P(f"<b>Autres appellations :</b> {a['alt']}<br/><b>Accès :</b> {a['acces']}", 'small'))
         story.append(P(a['description']))
         story.append(B(a['missions']))
@@ -804,7 +944,7 @@ def sec_alternatifs(story):
 
 
 def sec_erreurs(story):
-    story.append(Paragraph("13. Les erreurs à éviter et ce que tu n'as probablement pas pensé à vérifier", S['h1']))
+    story.append(Paragraph("14. Les erreurs à éviter et ce que tu n'as probablement pas pensé à vérifier", S['h1']))
     story.append(Paragraph("13.1 Ce que tu n'as probablement pas pensé à vérifier", S['h2']))
     story.append(B([
         "<b>La concurrence réelle pour un premier poste.</b> Une offre SOC L1 attractive reçoit souvent "
@@ -867,10 +1007,10 @@ def sec_erreurs(story):
         "défensifs (SOC, ingénierie, conformité) ; le pentest est une niche d'environ 5-10 % des postes."]))
 
 def sec_reco(story):
-    story.append(Paragraph("14. Recommandations personnalisées", S['h1']))
+    story.append(Paragraph("15. Recommandations personnalisées", S['h1']))
     story.append(P("Profil de référence : Bac Pro CIEL, région ARA (Annonay), intérêts cyber + IA + "
         "réseaux + gendarmerie, priorité à l'équilibre rémunération/stabilité/évolution/intérêt. "
-        "Recommandations fondées sur le classement multicritère (section 11.5) et les fiches."))
+        "Recommandations fondées sur le classement multicritère (section 12.5) et les fiches."))
     story.append(Paragraph("14.1 Les trois parcours les plus recommandés", S['h2']))
     story.append(T([
         [cell('Rang', head=True), cell('Parcours', head=True), cell('Pourquoi', head=True),
@@ -946,7 +1086,7 @@ def sec_reco(story):
         "profonde pour les astreintes (alors orienter GRC/audit)."))
 
 def sec_plan(story):
-    story.append(Paragraph("15. Plan d'action sur 1, 3, 5 et 10 ans", S['h1']))
+    story.append(Paragraph("16. Plan d'action sur 1, 3, 5 et 10 ans", S['h1']))
     story.append(Paragraph("15.1 Horizon 1 an (pendant et juste après le Bac Pro)", S['h2']))
     story.append(B([
         "Consolider les fondamentaux : réseaux TCP/IP, Linux (installer et administrer un serveur "
@@ -989,7 +1129,7 @@ def sec_plan(story):
 
 
 def sec_glossaire(story):
-    story.append(Paragraph("16. Glossaire", S['h1']))
+    story.append(Paragraph("17. Glossaire", S['h1']))
     rows = [[cell('Terme', head=True), cell('Définition', head=True)]]
     gloss = [
         ("AD / Entra ID", "Active Directory (Microsoft) et sa version cloud : annuaires gérant identités et accès."),
@@ -1027,8 +1167,8 @@ def sec_glossaire(story):
     story.append(T(rows, widths=[3.6*cm, 13.0*cm]))
 
 def sec_sources(story):
-    story.append(Paragraph("17. Sources et méthodologie", S['h1']))
-    story.append(Paragraph("17.1 Sources utilisées", S['h2']))
+    story.append(Paragraph("18. Sources et méthodologie", S['h1']))
+    story.append(Paragraph("18.1 Sources utilisées", S['h2']))
     rows = [[cell('Source', head=True), cell('Contenu utilisé', head=True), cell('Date', head=True),
              cell('Fiabilité', head=True)]]
     srcs = [
@@ -1041,8 +1181,9 @@ def sec_sources(story):
         ("Légifrance - décret n° 2025-174 (28/02/2025)", "Aide unique employeur apprentissage : 5 000 EUR / 6 000 EUR TH", "2025", "Élevée (texte de loi)"),
         ("Légifrance - décret n° 2025-943", "Cotisations micro-entrepreneur BNC : 24,6 % (2025) -> 26,1 % (2026)", "2025", "Élevée (texte de loi)"),
         ("URSSAF", "Cotisations micro-BNC, exonération apprentis jusqu'à 50 % SMIC (03/2025), ACRE", "2025", "Élevée (officielle)"),
-        ("Service-public.fr / impots.gouv.fr", "Barème IR 2025 (tranches 0/11/30/41/45 %, seuils 11 497/29 315/83 823/180 294 EUR), abattement 10 % (plafond 14 426 EUR), décote 889-45,25 %, rémunérations apprentis, exonération IR apprentis (20 889 EUR)", "2025", "Élevée (officielle)"),
-        ("Ministère des Armées - LPM 2024-2030", "413 MdEUR dont ~4 MdEUR cyber (x3), +953 ETP cyber", "2023 (loi votée)", "Élevée (loi votée)"),
+        ("Service-public.fr / impots.gouv.fr", "Barème IR 2026 revenus 2025 (loi n° 2026-103 du 19/02/2026, +0,9 % ; tranches 0/11/30/41/45 %, seuils 11 600/29 579/84 577/181 917 EUR), abattement 10 % (plafond 14 555 EUR, plancher 509 EUR), décote 897-45,25 % (seuil 1 982 EUR), rémunérations apprentis, exonération IR apprentis", "2026 (vérifié)", "Élevée (officielle)"),
+        ("Ministère des Armées - LPM 2024-2030", "413 MdEUR dont ~4 MdEUR cyber (x3), +953 ETP cyber ; LPM actualisée (loi du 16/08/2026) : +36 MdEUR, 63,3 MdEUR prévus pour 2027, recrutements soutenus", "2023 (loi votée) ; actualisée 08/2026", "Élevée (lois votées)"),
+        ("HCECM 2026 (Haut Comité d'évaluation de la condition militaire)", "~30 % de ruptures en période d'essai observées dans l'armée de Terre : l'engagement militaire n'est pas garanti, la sélection continue après l'entrée", "2026", "Bonne (rapport officiel, relayé par presse)"),
         ("Dares / France Stratégie - Les métiers en 2030", "~15 % d'emplois à risque fort d'automatisation, 32 % en transformation ; pas de consensus sur l'IA générative", "2022", "Élevée (étude publique de référence)"),
         ("OCDE", "27 % des emplois exposés à l'IA générative", "2023", "Élevée"),
         ("Insee", "Adoption IA générative : 18 % des entreprises >= 10 salariés (2025) vs 10 % (2024) ; déficit public ~5,5-6 % PIB", "2025", "Élevée (officielle)"),
@@ -1056,18 +1197,19 @@ def sec_sources(story):
     story.append(P("Aucune source n'a été fabriquée. Les montants non couverts par une source officielle "
         "(quatrechettes par niveau d'expérience, probabilités, scores IA, projections 2040) sont des "
         "estimations de cette étude, signalées comme telles partout où elles apparaissent.", 'small'))
-    story.append(Paragraph("17.2 Méthodologie des calculs", S['h2']))
+    story.append(Paragraph("18.2 Méthodologie des calculs", S['h2']))
     story.append(Paragraph("Salaires nets", S['h3']))
     story.append(P("<b>Net avant IR</b> = brut annuel x (1 - 0,23) / 12. Le taux de 23 % correspond aux "
         "cotisations salariales d'un cadre du privé (sécurité sociale, retraite complémentaire AGIRC-ARRCO, "
         "APEC, CSG/CRDS). Pour les non-cadres, le taux réel est légèrement inférieur (~21-22 %) : les nets "
         "affichés sont donc légèrement prudents pour les postes non-cadres (technicien, gendarme - dont le "
         "régime militaire diffère de toute façon). <b>Net après IR</b> = net avant IR - (impôt annuel / 12), "
-        "avec : revenu net imposable = brut - abattement 10 % (plafonné à 14 426 EUR, plancher 505 EUR) ; "
-        "barème 2025 par part : 0 % jusqu'à 11 497 EUR, 11 % jusqu'à 29 315 EUR, 30 % jusqu'à 83 823 EUR, "
-        "41 % jusqu'à 180 294 EUR, 45 % au-delà ; décote célibataire : 889 - 45,25 % x IR si IR < 1 964 EUR ; "
-        "célibataire, 1 part, pas de revenus annexes. Exemples : 40 000 EUR brut -> ~2 236 EUR net après IR ; "
-        "60 000 EUR -> ~3 070 EUR ; 90 000 EUR -> ~4 320 EUR."))
+        "avec : revenu net imposable = brut - abattement 10 % (plafonné à 14 555 EUR, plancher 509 EUR) ; "
+        "barème 2026 (revenus 2025, loi de finances n° 2026-103 du 19/02/2026, revalorisation +0,9 %) par part : "
+        "0 % jusqu'à 11 600 EUR, 11 % jusqu'à 29 579 EUR, 30 % jusqu'à 84 577 EUR, 41 % jusqu'à 181 917 EUR, "
+        "45 % au-delà ; décote célibataire : 897 - 45,25 % x IR si IR <= 1 982 EUR ; "
+        "célibataire, 1 part, pas de revenus annexes. Exemples : 40 000 EUR brut -> ~2 241 EUR net après IR ; "
+        "60 000 EUR -> ~3 075 EUR ; 90 000 EUR -> ~4 325 EUR."))
     story.append(Paragraph("Scores IA", S['h3']))
     story.append(P("Chaque métier est décomposé en tâches (fiche, partie A) ; chaque tâche est classée "
         "automatisable / transformée / humaine selon la littérature (Dares, OCDE) et l'état de la "
@@ -1119,6 +1261,7 @@ def build():
     sec_ia(story)
     sec_politique(story)
     sec_fiscal(story)
+    sec_argent(story)
     sec_probabilites(story)
     sec_graphiques(story)
     sec_alternatifs(story)

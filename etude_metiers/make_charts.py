@@ -254,6 +254,105 @@ def c10():
          "salaire départ 10, risque IA 10, accès depuis Bac Pro 10, intérêt 8, évolution 8, conditions 7, international 5.",
          'Estimation multicritère')
 
+
+# --- C11 : revenu net cumule par parcours (18 -> 40 ans) ---------------------
+def c11():
+    ages = np.arange(18, 41)
+    def cum(serie):
+        return np.cumsum(serie) / 1000.0
+    # P1 : BTS alternance (18-20) -> SOC/admin (21-25) -> bac+3 alternance puis cyber (26-40)
+    p1 = []
+    for a in ages:
+        if a <= 19:   brut = 950 * 12 / 0.77   # alternant 43-51 % SMIC -> equivalent brut
+        elif a <= 22: brut = 30000.0           # technicien/admin junior
+        elif a <= 25: brut = 38000.0           # SOC L1-L2
+        elif a <= 30: brut = 48000.0           # cyber confirme
+        else:         brut = 60000.0
+        p1.append(net(brut) * 12)
+    # P2 : bac+3/5 (18-23 sans revenu d'equivalent salaire, petits jobs ignores) -> pentest
+    p2 = []
+    for a in ages:
+        if a <= 22:   brut = 0.0
+        elif a <= 24: brut = 42000.0
+        elif a <= 28: brut = 52000.0
+        elif a <= 33: brut = 65000.0
+        else:         brut = 78000.0
+        p2.append(net(brut) * 12 if brut else 0.0)
+    # P3 : gendarme (entree 19 ans, solde net militaire, progression grille)
+    p3 = []
+    for a in ages:
+        if a <= 20:   n = 1500.0
+        elif a <= 25: n = 1700.0
+        elif a <= 30: n = 2000.0
+        elif a <= 35: n = 2350.0
+        else:         n = 2650.0
+        p3.append(n * 12)
+    # P4 : emploi direct apres Bac Pro (technicien IT), plafond plus bas
+    p4 = []
+    for a in ages:
+        if a <= 19:   brut = 24000.0
+        elif a <= 24: brut = 28000.0
+        elif a <= 30: brut = 33000.0
+        else:         brut = 38000.0
+        p4.append(net(brut) * 12)
+    fig, ax = plt.subplots(figsize=(9, 5.4))
+    for serie, lab, col in [(cum(p1), 'P1 : BTS alternance -> SOC/admin -> cyber', C_MAIN),
+                            (cum(p2), 'P2 : bac+3/+5 -> pentest (entree tardive)', C_ACC),
+                            (cum(p3), 'P3 : gendarmerie (solde + primes estimees)', C_MID),
+                            (cum(p4), 'P4 : emploi direct post-Bac Pro (technicien)', C_WARN)]:
+        ax.plot(ages, serie, linewidth=2.2, label=lab, color=col)
+    ax.set_xlabel('Age (ans)')
+    ax.set_ylabel('Revenu net apres IR cumule (kEUR)')
+    ax.set_title('Revenu net cumule selon le parcours, de 18 a 40 ans')
+    ax.legend(fontsize=8, loc='upper left')
+    ax.yaxis.set_major_formatter(lambda v, p: f"{int(v):,}".replace(',', ' '))
+    save(fig, 'c11_cumul_parcours.png',
+         'Source : modele de cette etude (salaires centraux des fiches, bar\u00e8me IR 2026, cotisations 23 %). '
+         'Militaire : soldes nettes estimees (grilles 2025 + primes), regime fiscal militaire non detaille.',
+         'Modele central, hors chomage et aleas')
+    print('c11 P1/P2/P3/P4 cumuls 40 ans (kEUR) :',
+          round(cum(p1)[-1]), round(cum(p2)[-1]), round(cum(p3)[-1]), round(cum(p4)[-1]))
+
+# --- C12 : simulation d'epargne (Monte Carlo, illustratif) -------------------
+def c12():
+    rng = np.random.default_rng(42)
+    n_sim, years, mensuel = 2000, 15, 300.0
+    mu, sigma = 0.05, 0.16
+    dt = 1.0 / 12.0
+    fin = np.zeros(n_sim)
+    for s in range(n_sim):
+        v = 0.0
+        for _ in range(years * 12):
+            r = mu * dt + sigma * np.sqrt(dt) * rng.standard_normal()
+            v = v * (1 + r) + mensuel
+        fin[s] = v
+    xs = np.arange(1, years + 1)
+    paths = np.zeros((n_sim, years))
+    for s in range(n_sim):
+        v = 0.0
+        for y in range(years):
+            for _ in range(12):
+                r = mu * dt + sigma * np.sqrt(dt) * rng.standard_normal()
+                v = v * (1 + r) + mensuel
+            paths[s, y] = v
+    p10, p50, p90 = np.percentile(paths, [10, 50, 90], axis=0) / 1000.0
+    vers = mensuel * 12 * xs
+    fig, ax = plt.subplots(figsize=(9, 5.2))
+    ax.fill_between(xs, p10, p90, alpha=0.25, color=C_MAIN, label='Intervalle 10-90 % (2 000 simulations)')
+    ax.plot(xs, p50, color=C_MAIN, linewidth=2.2, label='Mediane des simulations')
+    ax.plot(xs, vers / 1000.0, color=C_WARN, linewidth=2, linestyle='--', label='Versments cumules (sans rendement)')
+    ax.set_xlabel('Annees d\'epargne')
+    ax.set_ylabel('Capital (kEUR)')
+    ax.set_title("Simulation d'epargne : 300 EUR/mois, rendement log-normal (mediane 5 %/an, volatilite 16 %)")
+    ax.legend(fontsize=8, loc='upper left')
+    ax.yaxis.set_major_formatter(lambda v, p: f"{int(v):,}".replace(',', ' '))
+    save(fig, 'c12_epargne.png',
+         'Source : simulation Monte Carlo de cette etude (2 000 tirages, grain 42). Hypotheses : rendement annuel '
+         'log-normal, mediane 5 %, volatilite 16 %, frais et impots exclus (PFU 31,4 % sur plus-values hors enveloppes protegees).',
+         'Illustratif - rendements passes sans garantie')
+    print('c12 capital median 15 ans :', round(p50[-1]), 'kEUR | verse :', round(vers[-1] / 1000))
+
+
 if __name__ == '__main__':
-    c1(); c2(); c3(); c4(); c5(); c6(); c7(); c8(); c9(); c10()
+    c1(); c2(); c3(); c4(); c5(); c6(); c7(); c8(); c9(); c10(); c11(); c12()
     print('Tous les graphiques generes dans', OUT)

@@ -1,20 +1,23 @@
-"""Module fiscal : conversion brut -> net et calcul IR (bareme 2025).
+"""Module fiscal : conversion brut -> net et calcul IR (bareme 2026).
 
 Hypotheses (documentees dans le PDF, section methodologie) :
 - Cotisations salariales : 23 % du brut (cadre, regime general + retraite
   complementaire + APEC). Approximation valide pour un cadre en entreprise privee.
-- Abattement forfaitaire de 10 % pour frais professionnels (plafonne a 14 426 EUR,
-  plancher 505 EUR en 2025), celibataire, 1 part fiscale.
-- Bareme IR 2025 (revenus 2024, indexe) par part :
-  0 - 11 497 : 0 % ; 11 497 - 29 315 : 11 % ; 29 315 - 83 823 : 30 % ;
-  83 823 - 180 294 : 41 % ; > 180 294 : 45 %.
-- Decote celibataire : 889 - 45,25 % x IR si IR < 1 964 EUR.
+- Abattement forfaitaire de 10 % pour frais professionnels (plafonne a 14 555 EUR,
+  plancher 509 EUR en 2026), celibataire, 1 part fiscale.
+- Bareme IR 2026 (revenus 2025, loi de finances pour 2026 n° 2026-103 du 19/02/2026,
+  revalorisation +0,9 %) par part :
+  0 - 11 600 : 0 % ; 11 600 - 29 579 : 11 % ; 29 579 - 84 577 : 30 % ;
+  84 577 - 181 917 : 41 % ; > 181 917 : 45 %.
+- Decote celibataire : 897 - 45,25 % x IR si IR <= 1 982 EUR.
 - Pas de prime non soumise, pas de revenus annexes, pas de case T/P.
-Source : impots.gouv.fr, bareme 2025 ; service-public.fr.
+Source : service-public.gouv.fr (F1419, verifie 2026) ; impots.gouv.fr ; loi n° 2026-103.
 """
-PLAFOND_ABAT = 14426.0
-MIN_ABAT = 505.0
-BAREME = [(11497, 0.0), (29315, 0.11), (83823, 0.30), (180294, 0.41), (float('inf'), 0.45)]
+PLAFOND_ABAT = 14555.0
+MIN_ABAT = 509.0
+BAREME = [(11600, 0.0), (29579, 0.11), (84577, 0.30), (181917, 0.41), (float('inf'), 0.45)]
+DECOTE_FORFAIT = 897.0
+DECOTE_SEUIL = 1982.0
 
 def ir_annuel(rni):
     """Impot sur le revenu annuel, celibataire 1 part, apres decote."""
@@ -26,8 +29,8 @@ def ir_annuel(rni):
             prev = plafond
         else:
             break
-    if imp < 1964:
-        imp = max(0.0, imp - (889 - 0.4525 * imp))
+    if imp < DECOTE_SEUIL:
+        imp = max(0.0, imp - (DECOTE_FORFAIT - 0.4525 * imp))
     return imp
 
 def net_mensuel(brut_annuel, taux_cotis=0.23):
