@@ -37,8 +37,8 @@ story.append(HRFlowable(width='100%', thickness=1.2, color=BLEU, spaceBefore=6, 
 
 # ---- Experience ----
 story.append(Paragraph('EXP\u00c9RIENCE', S['h']))
-story.append(Paragraph('<b>Stagiaire \u2014 CYBERG (entreprise informatique, 30 collaborateurs) \u2014 Annonay</b>', S['corps']))
-story.append(Paragraph('PFMP de 3 semaines en infrastructure syst\u00e8mes & r\u00e9seaux et cybers\u00e9curit\u00e9 (tuteur : Th\u00e9o Cl\u00e9men\u00e7on)', S['small']))
+story.append(Paragraph('<b>Stagiaire \u2014 CYBERG (entreprise informatique, 30 collaborateurs) \u2014 Annonay</b> \u2014 plusieurs PFMP : 11\u201312/2025 et 06–07/2026', S['corps']))
+story.append(Paragraph('Stages en infrastructure syst\u00e8mes & r\u00e9seaux et cybers\u00e9curit\u00e9 (tuteur : Th\u00e9o Cl\u00e9men\u00e7on)', S['small']))
 story += B([
     "D\u00e9ploiement d'un <b>environnement virtualis\u00e9 sous Microsoft Hyper-V</b> : machines virtuelles Windows Server 2025 et Parrot OS (adressage IP, r\u00f4les).",
     "Cr\u00e9ation et configuration de <b>deux domaines Active Directory</b> (cybtest.local, cybtest2.local) : unit\u00e9s d'organisation, groupes de s\u00e9curit\u00e9 avec droits RO/RW \u2014 application du principe de <b>moindre privil\u00e8ge</b>.",
@@ -91,7 +91,7 @@ story.append(Paragraph("CENTRES D'INT\u00c9R\u00caT", S['h']))
 story.append(Paragraph("Escalade \u2022 Musique \u2022 Informatique (labs personnels, environnement virtualis\u00e9, cybers\u00e9curit\u00e9)", S['corps']))
 
 doc = SimpleDocTemplate('/workspace/github__uwusexycat270-bot__mistral/cv/CV_Matheo_Fanget.pdf',
-    pagesize=A4, leftMargin=1.5*cm, rightMargin=1.5*cm, topMargin=1.3*cm, bottomMargin=1.2*cm,
+    pagesize=A4, leftMargin=1.5*cm, rightMargin=1.5*cm, topMargin=1.1*cm, bottomMargin=0.9*cm,
     title='CV Matheo Fanget', author='Matheo Fanget')
 doc.build(story)
 print('CV genere')
